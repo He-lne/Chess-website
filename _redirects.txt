@@ -1,0 +1,2 @@
+# Cloudflare Pages重定向规则
+/* /index.html 200

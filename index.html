@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>双棋对战平台 - 中国象棋 & 国际象棋</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>♔</text></svg>">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-chess-queen"></i>
+                <span>双棋对战平台</span>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="user-info" id="userInfo">
+                <div class="username" id="usernameDisplay">访客</div>
+                <div class="guest-badge" id="guestBadge">访客模式</div>
+                <button class="btn btn-guest" id="guestModeBtn">继续访客</button>
+                <button class="btn btn-primary" id="loginBtn">登录</button>
+                <button class="btn btn-secondary" id="registerBtn">注册</button>
+            </div>
+        </header>
+        
+        <main>
+            <div class="sidebar">
+                <ul class="menu" id="mainMenu">
+                    <li class="menu-item active" data-page="home">
+                        <i class="fas fa-home"></i>
+                        <span>主页</span>
+                    </li>
+                    <li class="menu-item" data-page="chinese-chess">
+                        <i class="fas fa-chess-rook"></i>
+                        <span>中国象棋</span>
+                    </li>
+                    <li class="menu-item" data-page="international-chess">
+                        <i class="fas fa-chess-king"></i>
+                        <span>国际象棋</span>
+                    </li>
+                    <li class="menu-item" data-page="play">
+                        <i class="fas fa-gamepad"></i>
+                        <span>开始游戏</span>
+                    </li>
+                    <li class="menu-item" data-page="profile">
+                        <i class="fas fa-user"></i>
+                        <span>个人资料</span>
+                    </li>
+                    <li class="menu-item admin-only" data-page="admin">
+                        <i class="fas fa-crown"></i>
+                        <span>管理员面板</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="content">
+                <!-- 主页 -->
+                <div class="page active" id="home-page">
+                    <h1 class="page-title"><i class="fas fa-home"></i> 欢迎来到双棋对战平台</h1>
+                    
+                    <div class="guest-notice" id="guestNotice">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <strong>访客模式</strong> - 您正在以访客身份使用本平台。访客模式下，您可以与AI机器人进行对战，但无法进行真人对战。请注册或登录以解锁全部功能。
+                        </div>
+                    </div>
+                    
+                    <div class="admin-notice" id="adminNotice">
+                        <i class="fas fa-crown"></i>
+                        <div>
+                            <strong>管理员模式</strong> - 您正在以管理员身份使用本平台。您可以管理用户、修改系统设置和查看平台数据。
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-success" id="welcomeAlert">
+                        欢迎！您已成功登录。现在可以开始游戏了！
+                    </div>
+                    
+                    <div class="game-options">
+                        <div class="game-card" id="chineseChessCard">
+                            <div class="game-card-header chinese-chess">
+                                中国象棋
+                            </div>
+                            <div class="game-card-body">
+                                <p>中国象棋是一种两人对弈的棋类游戏，起源于中国，有着悠久的历史。</p>
+                                <p>游戏目标是将死对方的将（帅）。</p>
+                                <button class="btn btn-primary" id="playChineseChess">开始中国象棋</button>
+                            </div>
+                        </div>
+                        
+                        <div class="game-card" id="internationalChessCard">
+                            <div class="game-card-header international-chess">
+                                国际象棋
+                            </div>
+                            <div class="game-card-body">
+                                <p>国际象棋是一种两人对弈的棋类游戏，是全球最流行的棋类之一。</p>
+                                <p>游戏目标是将死对方的王。</p>
+                                <button class="btn btn-primary" id="playInternationalChess">开始国际象棋</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 40px;">
+                        <h3>平台特色</h3>
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <h4><i class="fas fa-user-friends"></i> 真人对战</h4>
+                                <p>与真实玩家在线对战，体验竞技乐趣。</p>
+                                <div class="feature-restriction">
+                                    <i class="fas fa-lock"></i> 仅限注册用户
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <h4><i class="fas fa-robot"></i> 机器人对战</h4>
+                                <p>与不同难度的AI机器人对战，提高棋艺。</p>
+                                <div class="feature-available">
+                                    <i class="fas fa-check"></i> 访客可用
+                                </div>
+                            </div>
+                            <div class="feature-card">
+                                <h4><i class="fas fa-trophy"></i> 成就系统</h4>
+                                <p>完成挑战获得成就，记录您的棋艺进步。</p>
+                                <div class="feature-restriction">
+                                    <i class="fas fa-lock"></i> 仅限注册用户
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 中国象棋页面 -->
+                <div class="page" id="chinese-chess-page">
+                    <h1 class="page-title"><i class="fas fa-chess-rook"></i> 中国象棋</h1>
+                    
+                    <div class="guest-notice" id="chineseGuestNotice">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <strong>访客模式</strong> - 您正在以访客身份进行中国象棋游戏。游戏数据将不会被保存。
+                        </div>
+                    </div>
+                    
+                    <div class="chessboard-container">
+                        <div class="game-info">
+                            <div class="player-info">
+                                <div class="player-icon" id="chinese-player-icon">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <div id="chinese-player-name">玩家1</div>
+                                    <div class="turn-indicator" id="chinese-turn-indicator">轮到红方</div>
+                                </div>
+                            </div>
+                            <div class="game-controls">
+                                <button class="btn btn-secondary" id="chinese-restart">重新开始</button>
+                                <button class="btn btn-danger" id="chinese-resign">认输</button>
+                            </div>
+                        </div>
+                        <div class="chessboard" id="chinese-chessboard">
+                            <!-- 中国象棋棋盘将通过JS生成 -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 国际象棋页面 -->
+                <div class="page" id="international-chess-page">
+                    <h1 class="page-title"><i class="fas fa-chess-king"></i> 国际象棋</h1>
+                    
+                    <div class="guest-notice" id="internationalGuestNotice">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <strong>访客模式</strong> - 您正在以访客身份进行国际象棋游戏。游戏数据将不会被保存。
+                        </div>
+                    </div>
+                    
+                    <div class="chessboard-container">
+                        <div class="game-info">
+                            <div class="player-info">
+                                <div class="player-icon" id="international-player-icon">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div>
+                                    <div id="international-player-name">玩家1</div>
+                                    <div class="turn-indicator" id="international-turn-indicator">轮到白方</div>
+                                </div>
+                            </div>
+                            <div class="game-controls">
+                                <button class="btn btn-secondary" id="international-restart">重新开始</button>
+                                <button class="btn btn-danger" id="international-resign">认输</button>
+                            </div>
+                        </div>
+                        <div class="chessboard international-board" id="international-chessboard">
+                            <!-- 国际象棋棋盘将通过JS生成 -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 开始游戏页面 -->
+                <div class="page" id="play-page">
+                    <h1 class="page-title"><i class="fas fa-gamepad"></i> 开始游戏</h1>
+                    
+                    <div class="guest-notice" id="playGuestNotice">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <strong>访客模式</strong> - 您正在以访客身份使用本平台。访客模式下，您只能与AI机器人进行对战。请注册或登录以解锁真人对战功能。
+                        </div>
+                    </div>
+                    
+                    <div class="form-container">
+                        <h3>选择游戏模式</h3>
+                        
+                        <div class="opponent-selection">
+                            <div class="opponent-option" id="human-opponent">
+                                <div class="opponent-icon">
+                                    <i class="fas fa-user-friends"></i>
+                                </div>
+                                <div class="opponent-info">
+                                    <h3>真人对战</h3>
+                                    <p>与真实玩家在线对战</p>
+                                </div>
+                                <div class="guest-restriction" id="human-restriction">仅限注册用户</div>
+                            </div>
+                            
+                            <div class="opponent-option selected" id="ai-opponent">
+                                <div class="opponent-icon">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <div class="opponent-info">
+                                    <h3>机器人对战</h3>
+                                    <p>与AI机器人对战，可选择难度</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group" id="opponentUsernameGroup">
+                            <label for="opponentUsername">对手用户名</label>
+                            <input type="text" id="opponentUsername" class="form-control" placeholder="请输入对手用户名">
+                        </div>
+                        
+                        <div class="form-group" id="aiDifficultyGroup">
+                            <label for="aiDifficulty">AI难度</label>
+                            <select id="aiDifficulty" class="form-control">
+                                <option value="easy">简单</option>
+                                <option value="medium" selected>中等</option>
+                                <option value="hard">困难</option>
+                                <option value="expert">专家</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="gameType">游戏类型</label>
+                            <select id="gameType" class="form-control">
+                                <option value="chinese">中国象棋</option>
+                                <option value="international">国际象棋</option>
+                            </select>
+                        </div>
+                        
+                        <button class="btn btn-primary start-game-btn" id="startGameBtn">开始游戏</button>
+                        
+                        <div class="play-mode-info">
+                            <p id="playModeInfo">您正在使用机器人对战模式</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 个人资料页面 -->
+                <div class="page" id="profile-page">
+                    <h1 class="page-title"><i class="fas fa-user"></i> 个人资料</h1>
+                    
+                    <div class="guest-notice" id="profileGuestNotice">
+                        <i class="fas fa-info-circle"></i>
+                        <div>
+                            <strong>访客模式</strong> - 您正在以访客身份使用本平台。访客模式下，您的游戏数据不会被保存。请注册或登录以保存游戏记录和个人资料。
+                        </div>
+                    </div>
+                    
+                    <div class="form-container">
+                        <div id="profileInfo">
+                            <div class="profile-header">
+                                <div class="profile-avatar" id="profileAvatar">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <h3 id="profileUsername">访客</h3>
+                                <div class="profile-badges">
+                                    <div id="profileGuestTag" class="guest-badge">访客模式</div>
+                                    <div id="profileAdminTag" class="admin-badge">管理员</div>
+                                </div>
+                            </div>
+                            
+                            <div class="profile-stats">
+                                <h4>游戏统计</h4>
+                                <div class="stats-grid">
+                                    <div class="stat-card">
+                                        <div class="stat-value" id="totalGames">0</div>
+                                        <div class="stat-label">总对局数</div>
+                                    </div>
+                                    <div class="stat-card">
+                                        <div class="stat-value" id="wins">0</div>
+                                        <div class="stat-label">胜利</div>
+                                    </div>
+                                </div>
+                                <div class="guest-stats-note" id="guestStatsNote">
+                                    访客模式下游戏数据不会被保存
+                                </div>
+                            </div>
+                            
+                            <div class="recent-activity">
+                                <h4>最近活动</h4>
+                                <div class="activity-container">
+                                    <div id="recentActivity">暂无活动记录</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="loginForm">
+                            <h3>用户登录</h3>
+                            <div class="form-group">
+                                <label for="loginUsername">用户名</label>
+                                <input type="text" id="loginUsername" class="form-control" placeholder="请输入用户名">
+                            </div>
+                            <div class="form-group">
+                                <label for="loginPassword">密码</label>
+                                <input type="password" id="loginPassword" class="form-control" placeholder="请输入密码">
+                            </div>
+                            <button class="btn btn-primary start-game-btn" id="doLoginBtn">登录</button>
+                            <div class="form-switch">
+                                <span>还没有账号？</span>
+                                <a href="#" id="showRegister">立即注册</a>
+                            </div>
+                        </div>
+                        
+                        <div id="registerForm">
+                            <h3>用户注册</h3>
+                            <div class="form-group">
+                                <label for="registerUsername">用户名</label>
+                                <input type="text" id="registerUsername" class="form-control" placeholder="请输入用户名">
+                            </div>
+                            <div class="form-group">
+                                <label for="registerPassword">密码</label>
+                                <input type="password" id="registerPassword" class="form-control" placeholder="请输入密码">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmPassword">确认密码</label>
+                                <input type="password" id="confirmPassword" class="form-control" placeholder="请再次输入密码">
+                            </div>
+                            <button class="btn btn-primary start-game-btn" id="doRegisterBtn">注册</button>
+                            <div class="form-switch">
+                                <span>已有账号？</span>
+                                <a href="#" id="showLogin">立即登录</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 管理员面板 -->
+                <div class="page" id="admin-page">
+                    <h1 class="page-title"><i class="fas fa-crown"></i> 管理员面板</h1>
+                    
+                    <div class="admin-notice">
+                        <i class="fas fa-crown"></i>
+                        <div>
+                            <strong>管理员模式</strong> - 您正在以管理员身份管理平台。请谨慎操作，这些操作可能会影响所有用户。
+                        </div>
+                    </div>
+                    
+                    <div class="admin-container">
+                        <!-- 用户管理 -->
+                        <div class="admin-section">
+                            <h3><i class="fas fa-users"></i> 用户管理</h3>
+                            <div class="admin-table-container">
+                                <table class="admin-table" id="userTable">
+                                    <thead>
+                                        <tr>
+                                            <th>用户名</th>
+                                            <th>注册日期</th>
+                                            <th>总对局数</th>
+                                            <th>胜率</th>
+                                            <th>状态</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="userTableBody">
+                                        <!-- 用户数据将通过JS动态生成 -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="system-controls">
+                                <button class="btn btn-admin" id="refreshUsersBtn">
+                                    <i class="fas fa-sync-alt"></i> 刷新用户列表
+                                </button>
+                                <button class="btn btn-danger" id="resetAllStatsBtn">
+                                    <i class="fas fa-trash"></i> 重置所有用户统计
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- 系统统计 -->
+                        <div class="admin-section">
+                            <h3><i class="fas fa-chart-bar"></i> 系统统计</h3>
+                            <div class="stats-grid">
+                                <div class="stat-card">
+                                    <div class="stat-value" id="totalUsers">0</div>
+                                    <div class="stat-label">总用户数</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value" id="totalGamesAdmin">0</div>
+                                    <div class="stat-label">总对局数</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value" id="activeGames">0</div>
+                                    <div class="stat-label">活跃对局</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value" id="chineseGames">0</div>
+                                    <div class="stat-label">中国象棋对局</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value" id="internationalGames">0</div>
+                                    <div class="stat-label">国际象棋对局</div>
+                                </div>
+                                <div class="stat-card">
+                                    <div class="stat-value" id="aiGames">0</div>
+                                    <div class="stat-label">AI对战对局</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 系统设置 -->
+                        <div class="admin-section">
+                            <h3><i class="fas fa-cog"></i> 系统设置</h3>
+                            <div class="form-group">
+                                <label for="systemMessage">系统公告</label>
+                                <textarea id="systemMessage" class="form-control" rows="3" placeholder="输入系统公告内容，将显示在主页"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="defaultAiDifficulty">默认AI难度</label>
+                                <select id="defaultAiDifficulty" class="form-control">
+                                    <option value="easy">简单</option>
+                                    <option value="medium" selected>中等</option>
+                                    <option value="hard">困难</option>
+                                    <option value="expert">专家</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="guestLimits">访客每日对局限制</label>
+                                <input type="number" id="guestLimits" class="form-control" min="1" max="50" value="10">
+                            </div>
+                            <div class="system-controls">
+                                <button class="btn btn-admin" id="saveSettingsBtn">
+                                    <i class="fas fa-save"></i> 保存系统设置
+                                </button>
+                                <button class="btn btn-secondary" id="resetSettingsBtn">
+                                    <i class="fas fa-undo"></i> 恢复默认设置
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- 数据管理 -->
+                        <div class="admin-section">
+                            <h3><i class="fas fa-database"></i> 数据管理</h3>
+                            <div class="system-controls">
+                                <button class="btn btn-admin" id="exportDataBtn">
+                                    <i class="fas fa-download"></i> 导出数据
+                                </button>
+                                <button class="btn btn-secondary" id="importDataBtn">
+                                    <i class="fas fa-upload"></i> 导入数据
+                                </button>
+                                <button class="btn btn-danger" id="clearAllDataBtn">
+                                    <i class="fas fa-trash-alt"></i> 清除所有数据
+                                </button>
+                            </div>
+                            <div class="admin-warning">
+                                <p><strong>注意：</strong>清除所有数据将删除所有用户信息和游戏记录，此操作不可逆！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>双棋对战平台 &copy; 2023 - 中国象棋与国际象棋在线对战</p>
+            <p class="footer-sub">支持访客模式 - 管理员账号: administrator / 123456</p>
+        </footer>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

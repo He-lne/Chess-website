@@ -1,0 +1,884 @@
+/* 双棋对战平台 - 样式文件 */
+
+/* 基础样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+}
+
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --light-color: #ecf0f1;
+    --dark-color: #2c3e50;
+    --success-color: #27ae60;
+    --warning-color: #f39c12;
+    --admin-color: #9c27b0;
+    --chessboard-dark: #b58863;
+    --chessboard-light: #f0d9b5;
+    --chinese-dark: #b55a30;
+    --chinese-light: #f0c090;
+    --guest-color: #9b59b6;
+}
+
+body {
+    background: linear-gradient(135deg, #1a2980, #26d0ce);
+    color: #333;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+/* 头部样式 */
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.logo i {
+    margin-right: 10px;
+    font-size: 28px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.username {
+    font-weight: 600;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 5px 15px;
+    border-radius: 20px;
+}
+
+.guest-badge {
+    background-color: var(--guest-color);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+.admin-badge {
+    background-color: var(--admin-color);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 5px;
+}
+
+/* 按钮样式 */
+.btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+}
+
+.btn-secondary {
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+.btn-secondary:hover {
+    background-color: #bdc3c7;
+}
+
+.btn-danger {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c0392b;
+}
+
+.btn-guest {
+    background-color: var(--guest-color);
+    color: white;
+}
+
+.btn-guest:hover {
+    background-color: #8e44ad;
+}
+
+.btn-admin {
+    background-color: var(--admin-color);
+    color: white;
+}
+
+.btn-admin:hover {
+    background-color: #7b1fa2;
+}
+
+/* 主体布局 */
+main {
+    display: flex;
+    min-height: 700px;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-right: 1px solid #dee2e6;
+}
+
+.menu {
+    list-style: none;
+    margin-top: 20px;
+}
+
+.menu-item {
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.menu-item i {
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.menu-item:hover {
+    background-color: #e9ecef;
+}
+
+.menu-item.active {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.menu-item.admin-only {
+    display: none;
+}
+
+/* 内容区域 */
+.content {
+    flex: 1;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.page {
+    display: none;
+    flex: 1;
+}
+
+.page.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.page-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.page-title i {
+    margin-right: 10px;
+}
+
+/* 表单样式 */
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.admin-container {
+    max-width: 100%;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+}
+
+/* 游戏卡片 */
+.game-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.game-card {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+}
+
+.game-card-header {
+    padding: 20px;
+    color: white;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.chinese-chess {
+    background: linear-gradient(to right, var(--chinese-dark), var(--chinese-light));
+}
+
+.international-chess {
+    background: linear-gradient(to right, var(--chessboard-dark), var(--chessboard-light));
+}
+
+.game-card-body {
+    padding: 20px;
+}
+
+.game-card-body p {
+    margin-bottom: 15px;
+    color: #555;
+}
+
+/* 对手选择 */
+.opponent-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.opponent-option {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.opponent-option:hover {
+    border-color: var(--secondary-color);
+    background-color: rgba(52, 152, 219, 0.05);
+}
+
+.opponent-option.selected {
+    border-color: var(--secondary-color);
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+.opponent-option.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.opponent-option.disabled:hover {
+    border-color: #dee2e6;
+    background-color: transparent;
+}
+
+.guest-restriction {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: var(--warning-color);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.opponent-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--light-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-size: 24px;
+    color: var(--primary-color);
+}
+
+.opponent-info h3 {
+    margin-bottom: 5px;
+    color: var(--primary-color);
+}
+
+.opponent-info p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* 棋盘样式 */
+.chessboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.chessboard {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    width: 600px;
+    height: 667px;
+    border: 3px solid #333;
+    margin-bottom: 20px;
+}
+
+.international-board {
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    width: 600px;
+    height: 600px;
+}
+
+.cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.cell:hover {
+    opacity: 0.9;
+}
+
+.dark {
+    background-color: var(--chessboard-dark);
+}
+
+.light {
+    background-color: var(--chessboard-light);
+}
+
+.chinese-cell.dark {
+    background-color: var(--chinese-dark);
+}
+
+.chinese-cell.light {
+    background-color: var(--chinese-light);
+}
+
+/* 游戏信息 */
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    width: 600px;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.player-info {
+    display: flex;
+    align-items: center;
+}
+
+.player-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.guest-icon {
+    background-color: var(--guest-color);
+}
+
+.admin-icon {
+    background-color: var(--admin-color);
+}
+
+.turn-indicator {
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+.game-controls {
+    display: flex;
+    gap: 10px;
+}
+
+/* 提示信息 */
+.alert {
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.alert-warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+
+.alert-admin {
+    background-color: rgba(156, 39, 176, 0.1);
+    border: 1px solid var(--admin-color);
+    color: var(--admin-color);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.guest-notice {
+    background-color: rgba(155, 89, 182, 0.1);
+    border: 1px solid var(--guest-color);
+    color: var(--guest-color);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.guest-notice i {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.admin-notice {
+    background-color: rgba(156, 39, 176, 0.1);
+    border: 1px solid var(--admin-color);
+    color: var(--admin-color);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.admin-notice i {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+/* 管理员面板 */
+.admin-panel {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-section {
+    margin-bottom: 30px;
+}
+
+.admin-section h3 {
+    color: var(--admin-color);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--admin-color);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.admin-table th, .admin-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.admin-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.admin-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* 统计卡片 */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.stat-card {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stat-card .stat-value {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.stat-card .stat-label {
+    color: #666;
+    font-size: 14px;
+}
+
+.system-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* 特色功能 */
+.features-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.feature-card {
+    flex: 1;
+    min-width: 200px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.feature-card h4 {
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.feature-restriction {
+    font-size: 12px;
+    color: #e74c3c;
+    margin-top: 5px;
+}
+
+.feature-available {
+    font-size: 12px;
+    color: var(--guest-color);
+    margin-top: 5px;
+}
+
+/* 个人资料页面 */
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.profile-badges {
+    margin-top: 5px;
+}
+
+.profile-stats {
+    margin-bottom: 20px;
+}
+
+.guest-stats-note {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+}
+
+.recent-activity {
+    margin-top: 30px;
+}
+
+.activity-container {
+    margin-top: 15px;
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+/* 表单切换 */
+.form-switch {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.form-switch a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* 开始游戏页面 */
+.start-game-btn {
+    width: 100%;
+    padding: 12px;
+}
+
+.play-mode-info {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+    font-size: 14px;
+}
+
+/* 页脚 */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--primary-color);
+    color: white;
+    margin-top: 20px;
+}
+
+.footer-sub {
+    margin-top: 5px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* 移动端菜单按钮 */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* 警告区域 */
+.admin-warning {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #666;
+}
+
+/* 响应式设计 */
+@media (max-width: 992px) {
+    .chessboard, .international-board {
+        width: 500px;
+        height: 556px;
+    }
+    
+    .international-board {
+        height: 500px;
+    }
+    
+    .game-info {
+        width: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    .menu {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 0;
+    }
+    
+    .menu-item {
+        margin-bottom: 0;
+        flex-direction: column;
+        text-align: center;
+        padding: 10px;
+        font-size: 14px;
+    }
+    
+    .menu-item i {
+        margin-right: 0;
+        margin-bottom: 5px;
+        font-size: 18px;
+    }
+    
+    .chessboard, .international-board {
+        width: 100%;
+        max-width: 400px;
+        height: 445px;
+    }
+    
+    .international-board {
+        height: 400px;
+    }
+    
+    .game-info {
+        width: 100%;
+        max-width: 400px;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .admin-table {
+        display: block;
+        overflow-x: auto;
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .logo span {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .chessboard, .international-board {
+        max-width: 350px;
+        height: 389px;
+    }
+    
+    .international-board {
+        height: 350px;
+    }
+    
+    .cell {
+        font-size: 28px;
+    }
+    
+    .form-container {
+        padding: 20px;
+    }
+    
+    .features-grid {
+        flex-direction: column;
+    }
+}
